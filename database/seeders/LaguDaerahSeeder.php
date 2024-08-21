@@ -13,6 +13,6 @@ class LaguDaerahSeeder extends Seeder
      */
     public function run(): void
     {
-        LaguDaerah::factory()->count(10000)->create();
+        LaguDaerah::factory()->count(100)->create();
     }
 }

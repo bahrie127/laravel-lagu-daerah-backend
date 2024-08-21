@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class LaguDaerah extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['judul', 'lagu', 'daerah'];
 }
