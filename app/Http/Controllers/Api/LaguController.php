@@ -12,7 +12,8 @@ class LaguController extends Controller
     public function index()
     {
         //pagination
-        $laguDaerahs = LaguDaerah::paginate(10);
+        $laguDaerahs = LaguDaerah::orderBy('id', 'DESC')
+            ->paginate(10);
         return response()->json([
             'status' => 'success',
             'data' => $laguDaerahs
@@ -26,12 +27,22 @@ class LaguController extends Controller
         $request->validate([
             'judul' => 'required',
             'lagu' => 'required',
-            'daerah' => 'required'
+            'daerah' => 'required',
+            'image' => 'required',
         ]);
         $laguDaerah = new LaguDaerah;
         $laguDaerah->judul = $request->judul;
         $laguDaerah->lagu = $request->lagu;
         $laguDaerah->daerah = $request->daerah;
+
+        //image
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $fileName = time() . '.' . $request->image->extension();
+            $image->storeAs('public/images', $fileName);
+            $laguDaerah->image_url = $fileName;
+        }
+
         $laguDaerah->save();
 
         return response()->json([
@@ -53,6 +64,13 @@ class LaguController extends Controller
         $laguDaerah->judul = $request->judul;
         $laguDaerah->lagu = $request->lagu;
         $laguDaerah->daerah = $request->daerah;
+        //image
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $fileName = time() . '.' . $request->image->extension();
+            $image->storeAs('public/images', $fileName);
+            $laguDaerah->image_url = $fileName;
+        }
         $laguDaerah->save();
 
         return response()->json([

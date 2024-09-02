@@ -9,5 +9,5 @@ class LaguDaerah extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['judul', 'lagu', 'daerah'];
+    protected $fillable = ['judul', 'lagu', 'daerah', 'image_url',];
 }

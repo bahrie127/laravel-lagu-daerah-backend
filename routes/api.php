@@ -14,7 +14,7 @@ Route::get('/lagudaerah', [App\Http\Controllers\Api\LaguController::class, 'inde
 Route::post('/lagudaerah', [App\Http\Controllers\Api\LaguController::class, 'create']);
 
 //update lagu daerah
-Route::put('/lagudaerah/{id}', [App\Http\Controllers\Api\LaguController::class, 'update']);
+Route::post('/lagudaerah/{id}', [App\Http\Controllers\Api\LaguController::class, 'update']);
 
 //delete lagu daerah
 Route::delete('/lagudaerah/{id}', [App\Http\Controllers\Api\LaguController::class, 'delete']);
